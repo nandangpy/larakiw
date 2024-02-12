@@ -17,7 +17,9 @@ class TransaksiController extends Controller
     {
         //
         $active = 'transaksi';
-        $data = Transaksi::with('barang')->where('id', Auth::user()->id)->whereIn('status', ['DIBAYAR', 'DIKIRIM'])->get();
+        $data = Transaksi::with('barang')->whereIn('status', ['DIBAYAR', 'DIKIRIM'])->get();
+        
+        // dd($data);
         return view('pages.admin.transaksi.index', compact('active', 'data'));
     }
 }

@@ -69,7 +69,7 @@
                 </a>
             </li>
 
-            <li class="nav-item {{ $active == 'x' ? 'active' : '' }}">
+            <li class="nav-item {{ $active == 'transaksi' ? 'active' : '' }}">
                 <a href="{{route('transaksi')}}" class="nav-link">
                     <i class="fas fa-fire"></i>
                     <span>Transaksi</span>

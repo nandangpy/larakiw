@@ -13,7 +13,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>Barang</h1>
+            <h1>Transaksi</h1>
         </div>
         <div class="row mt-4">
             <div class="col">
@@ -28,8 +28,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('barang.create') }}" class="btn btn-primary mb-4"><i
-                                class="fas fa-plus-circle"></i> Barang</a>
+                        
 
                         <div class="table-responsive">
                             <table class="table table-bordered table-md" id="tblkate">
@@ -55,14 +54,23 @@
                                             {{ $item->barang['nama_barang'] }}
                                         
                                         <td>
-                                            {{ $item->jumlah_item }}
+                                            {{ $item->jumlah_item}}
                                         </td>
 
                                         <td>
                                             @currency($item->total_harga)
                                         </td>
-                                        
+
                                         <td>
+                                            @if ($item->status == 'DIBAYAR')
+                                            <div class="badge badge-primary">DIBAYAR</div>
+                                            @else
+                                            <div class="badge badge-primary">DIKIRIM</div>
+                                            @endif
+                                        </td>
+
+                                        <td>
+
                                             {{-- <form action="{{ route('barang.destroy', $item->uid_b) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
@@ -73,6 +81,7 @@
                                                 <button type="submit" class="btn btn-sm btn-danger"><i
                                                         class="fas fa-trash"></i></button>
                                             </form> --}}
+                                            
                                         </td>
                                     </tr>
                                     @endforeach
