@@ -21,30 +21,16 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/components.css')}}">
-    {{-- <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}"> --}}
+    {{--
+    <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}"> --}}
     <!-- Plugin CSS -->
     @yield('css')
-
-
-
-    <style>
-        .kbw-signature {
-            width: 100%;
-            height: 200px;
-        }
-
-        #sig canvas {
-            width: 100% !important;
-            height: auto;
-        }
-    </style>
-
 </head>
 
 <body class="layout-3">
-    
+
     <div id="app">
-        <div class="main-wrapper">
+        <div class="main-wrapper container">
 
             @include('partials.navbar')
             @yield('container')

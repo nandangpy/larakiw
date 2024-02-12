@@ -13,7 +13,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>Kategori Barang</h1>
+            <h1>Barang</h1>
         </div>
         <div class="row mt-4">
             <div class="col">
@@ -28,15 +28,17 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('kategoribarang.create') }}" class="btn btn-primary mb-4"><i
-                                class="fas fa-plus-circle"></i> Jenis Kategori</a>
+                        <a href="{{ route('barang.create') }}" class="btn btn-primary mb-4"><i
+                                class="fas fa-plus-circle"></i> Barang</a>
 
                         <div class="table-responsive">
                             <table class="table table-bordered table-md" id="tblkate">
                                 <thead>
                                     <tr>
                                         <th>No.</th>
-                                        <th>Kategori Barang</th>
+                                        <th>Nama Barang</th>
+                                        <th>Harga</th>
+                                        <th>Stok</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
@@ -49,17 +51,21 @@
                                             {{ $loop->iteration }}
                                         </td>
                                         <td>
-                                            {{ $item->nama_kategori }}
+                                            {{ $item->nama_barang }}
+                                        <td>
+                                            @currency($item->harga_barang)
+                                        </td>
+                                        <td>
+                                            {{ $item->stok_barang }}
                                         </td>
 
                                         <td>
-                                            <form action="{{ route('kategoribarang.destroy', $item->uid_bk) }}"
-                                                method="POST">
+                                            <form action="{{ route('barang.destroy', $item->uid_b) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <a href="{{ route('kategoribarang.show', $item->uid_bk) }}"
+                                                <a href="{{ route('barang.show', $item->uid_b) }}"
                                                     class="btn btn-sm btn-info"><i class="fas fa-info-circle"></i></a>
-                                                <a href="{{ route('kategoribarang.edit', $item->uid_bk) }}"
+                                                <a href="{{ route('barang.edit', $item->uid_b) }}"
                                                     class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
                                                 <button type="submit" class="btn btn-sm btn-danger"><i
                                                         class="fas fa-trash"></i></button>
@@ -106,10 +112,4 @@
         }, 30000 );
     });
 </script>
-@endsection
-
-{{-- Jika ada script tambahan Specifik --}}
-@section('js-specific')
-{{-- <script src="/assets/js/chartJS-module.js">
-</script> --}}
 @endsection
