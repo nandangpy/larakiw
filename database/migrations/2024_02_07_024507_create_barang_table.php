@@ -14,14 +14,12 @@ return new class extends Migration
         Schema::create('barang', function (Blueprint $table) {
             $table->uuid('uid_b')->primary();
             $table->foreignUuid('uid_bk');
-            $table->string('nama_barang');
-            $table->longText('deskripsi');
-            $table->integer('harga');
-            $table->integer('stok');
+            $table->string('nama_barang')->unique();;
+            $table->longText('deskripsi_barang');
+            $table->integer('harga_barang');
+            $table->integer('stok_barang');
+            $table->string('foto_barang', 2048)->nullable();
             $table->string('slug')->unique();
-            // $table->string('thumbnail', 2048)->nullable();
-            // $table->enum('status', ['A', 'T'])->default('A')->comment = 'A: Aktif, T:Tidak Aktif';
-            // $table->datetime('published_at');
             $table->foreign('uid_bk')->references('uid_bk')->on('kategoribarang')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

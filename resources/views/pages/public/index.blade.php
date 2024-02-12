@@ -3,45 +3,64 @@
 @section('container')
 <!-- Main Content -->
 <div class="main-content">
-  <section class="section">
-    <div class="section-header">
-      <h1>Top Navigation</h1>
-      <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-        <div class="breadcrumb-item"><a href="#">Layout</a></div>
-        <div class="breadcrumb-item">Top Navigation</div>
-      </div>
-    </div>
+    <section class="section">
+        <div class="row-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Toko Mainan</h4>
+                </div>
+                <div class="card-body">
+                    <nav class="navbar bg-primary">
+                        <a class="navbar-brand" href="#">My App</a>
+                        <form class="form-inline">
+                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-dark" type="submit">Search</button>
+                        </form>
+                    </nav>
+                </div>
+            </div>
+        </div>
 
-    <div class="section-body">
-      <h2 class="section-title">This is Example Page</h2>
-      <p class="section-lead">This page is just an example for you to create your own page.</p>
-      <div class="card">
-        <div class="card-header">
-          <h4>Example Card</h4>
+        <div class="section-body">
+            <h2 class="section-title">Product</h2>
+
+            <div class="row">
+
+                @foreach ($data as $itemdata)
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                    <article class="article">
+                        <div class="article-header">
+                            <div class="article-image"
+                                data-background="{{asset('storage/uploads/images/barang/'.$itemdata->foto_barang)}}">
+                            </div>
+                            <div class="article-title">
+                                <h2><a href="#">{{ $itemdata->nama_barang }}</a></h2>
+                            </div>
+                        </div>
+                        <div class="article-details">
+                            <p>{!! $itemdata->deskripsi_barang !!}</p>
+                            {{-- <br> --}}
+                            <h5>@currency($itemdata->harga_barang)</h5>
+                            <div class="article-cta">
+                                <a href="#" class="btn btn-primary">Beli</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                @endforeach
+
+            </div>
+
         </div>
-        <div class="card-body">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-        <div class="card-footer bg-whitesmoke">
-          This is card footer
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 </div>
 <footer class="main-footer">
-  <div class="footer-left">
-    Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a>
-  </div>
-  <div class="footer-right">
-    
-  </div>
+    <div class="footer-left">
+        Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://-">31</a>
+    </div>
+    <div class="footer-right">
+
+    </div>
 </footer>
 
 @endsection
@@ -49,7 +68,7 @@
 
 {{-- Jika ada script tambahan Libreri --}}
 @section('js-libraies')
-<script type="text/javascript" src="/assets/build/chartJS/chart.min.js"></script>
+{{-- <script type="text/javascript" src="/assets/build/chartJS/chart.min.js"></script> --}}
 @endsection
 
 {{-- Jika ada script tambahan Specifik --}}
