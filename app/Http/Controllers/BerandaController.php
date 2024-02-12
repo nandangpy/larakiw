@@ -20,8 +20,7 @@ class BerandaController extends Controller
     {
 
         $active = 'barang';
-        $data = Barang::with('Kategoribarang')->get();
-
+        $data = Barang::with('Kategoribarang')->paginate(2);
         return view('pages.public.index', compact('active', 'data'));
     }
 }

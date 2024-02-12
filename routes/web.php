@@ -7,7 +7,11 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\BarangController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\KategoribarangController;
+use App\Http\Controllers\Admin\TransaksiController;
+
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\BeliController;
+use App\Http\Controllers\TransaksisayaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,14 +24,16 @@ use App\Http\Controllers\BerandaController;
 |
 */
 
-Route::get('/beli', function () {
-    return view('pages.public.beli');
+Route::get('/pesanan', function () {
+    // return view('pages.public.pesanan-saya');
 });
 
 // Route::get('/news', [NewsController::class, 'index'])->name('news');
 // Route::get('/news/{berita:slug}', [NewsController::class, 'show'])->name('news-show');
 
 Route::get('/', [BerandaController::class, 'index']);
+
+Route::get('/beli/{uid_b}', [BeliController::class, 'beli'])->name('beli');
 
 
 // LOGIN?REGISTER?
@@ -59,6 +65,7 @@ Route::group([
     Route::get('/home', [HomeController::class, 'adminHome'])->name('dashboard-admin');
     Route::resource('kategoribarang', KategoribarangController::class);
     Route::resource('barang', BarangController::class);
+    Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi');
 });
 
 /*------------------------------------------
@@ -67,5 +74,8 @@ All Normal Users Routes List
 Route::group([
     'middleware' => ['auth' => 'UserAccess:customer']
 ], function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    
+    Route::put('/beli/{uid_b}', [BeliController::class, 'belimainan'])->name('beli-mainan');
+    Route::get('/pesanan-saya', [TransaksisayaController::class, 'transaksisaya'])->name('pesanan-saya');
+    Route::get('/pesanan-saya/{uid_tr}', [TransaksisayaController::class, 'pesananditerima'])->name('pesanan-diterima');
 });

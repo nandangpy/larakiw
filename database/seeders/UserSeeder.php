@@ -19,8 +19,8 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'id' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
-                'email' => 'tokopadio@gmail.com',
-                'password' => Hash::make('tokopadio123'),
+                'email' => 'tokopakdio@gmail.com',
+                'password' => Hash::make('pakdio123'),
                 'role' => 1,
                 'name' => 'Admin tokopadio',
             ] ,

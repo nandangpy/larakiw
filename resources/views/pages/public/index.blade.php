@@ -42,13 +42,44 @@
                             {{-- <br> --}}
                             <h5>@currency($itemdata->harga_barang)</h5>
                             <div class="article-cta">
-                                <a href="#" class="btn btn-primary">Beli</a>
+                                <a href="{{ route('beli', $itemdata->uid_b) }}" class="btn btn-primary">Beli</a>
                             </div>
                         </div>
                     </article>
                 </div>
                 @endforeach
+            </div>
 
+            <div class="row">
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        @if ($data->onFirstPage())
+                            <li class="page-item disabled">
+                                <a class="page-link" href="" tabindex="-1">Previous</a>
+                            </li>
+                        @else
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $data->previousPageUrl() }}" tabindex="-1">Previous</a>
+                            </li>
+                        @endif
+                    
+                        @for ($i = 1; $i <= $data->lastPage(); $i++)
+                                <li class="page-item {{ $data->currentPage() == $i ? 'active' : '' }}"> 
+                                    <a class="page-link" href="{{ $data->url($i) }}"> {{ $i }} </a>
+                                </li>
+                        @endfor
+
+                        @if ($data->hasMorePages())
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $data->nextPageUrl() }}" tabindex="-1">Next</a>
+                            </li>
+                        @else
+                            <li class="page-item disabled">
+                                <a class="page-link" href="" tabindex="-1">Next</a>
+                            </li>
+                        @endif
+                    </ul>
+                </nav>
             </div>
 
         </div>
