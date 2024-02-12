@@ -69,8 +69,8 @@
                 </a>
             </li>
 
-            <li class="nav-item {{ $active == 'x' ? 'active' : '' }}">
-                <a href="{{route('dashboard-admin')}}" class="nav-link">
+            <li class="nav-item {{ $active == 'transaksi' ? 'active' : '' }}">
+                <a href="{{route('transaksi')}}" class="nav-link">
                     <i class="fas fa-fire"></i>
                     <span>Transaksi</span>
                 </a>
