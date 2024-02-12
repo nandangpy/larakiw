@@ -53,13 +53,13 @@
                                                     ->first();
                                             @endphp --}}
                                             <td>
-                                                <form action="{{ route('kategoribarang.destroy', $data->uid_bk) }}"
+                                                <form action="{{ route('kategoribarang.destroy', $item->uid_bk) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <a href="{{ route('kategoribarang.show', $data->uid_bk) }}"
+                                                    <a href="{{ route('kategoribarang.show', $item->uid_bk) }}"
                                                         class="btn btn-sm btn-info"><i class="fas fa-info-circle"></i></a>
-                                                    <a href="{{ route('kategoribarang.edit', $data->uid_bk) }}"
+                                                    <a href="{{ route('kategoribarang.edit', $item->uid_bk) }}"
                                                         class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
                                                     @if (empty($detail))
                                                         <button type="submit"

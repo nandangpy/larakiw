@@ -16,6 +16,7 @@ class KategoribarangController extends Controller
         //
         $active = 'kategoribarang';
         $data = Kategoribarang::all();
+        dd($data);
         return view('pages.admin.kategoribarang.index', compact('active', 'data'));
     }
 
