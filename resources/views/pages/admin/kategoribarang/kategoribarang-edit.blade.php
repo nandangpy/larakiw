@@ -5,14 +5,15 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Form Jenis Mainan</h1>
+            <h1>Form Edit Jenis Mainan</h1>
         </div>
 
         <div class="row mt-4 d-flex justify-content-center">
             <div class="col-lg-8">
                 <div class="card card-primary">
 
-                    <form method="POST" action="{{route('kategoribarang.store')}}" enctype="multipart/form-data">@csrf
+                    <form method="POST" action="{{route('kategoribarang.update', [$data->uid_bk])}}"
+                        enctype="multipart/form-data">{{method_field("PUT")}}@csrf
                         <div class="card-body">
                             <div class="form-group row">
                                 <label for="nama_kategori"
@@ -22,7 +23,7 @@
                                 <div class="col-8">
                                     <input id="nama_kategori" type="text"
                                         class="form-control @error('nama_kategori')is-invalid @enderror"
-                                        name="nama_kategori" value="{{ old('nama_kategori') }}">
+                                        name="nama_kategori" value="{{ $data->nama_kategori }}">
                                     @error('nama_kategori')
                                     <span class="has-error">
                                         {{ $message }}
@@ -30,7 +31,6 @@
                                     @enderror
                                 </div>
                             </div>
-
                         </div>
                         <div class="card-footer text-right">
                             <button type="submit" class="btn btn-primary btn-sm">

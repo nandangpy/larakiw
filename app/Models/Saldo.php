@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Ramsey\Uuid\Uuid;
 
-class Barang extends Model
+class Saldo extends Model
 {
     use HasUuids, HasApiTokens, HasFactory, Notifiable;
 
@@ -18,33 +18,18 @@ class Barang extends Model
      *
      * @var array<int, string>
      */
-    protected $primaryKey = 'uid_b';
-    protected $table = 'barang';
+    protected $primaryKey = 'uid_s';
+    protected $table = 'saldo';
     protected $fillable = [
-        'uid_bk',
-        'nama_barang',
-        'deskripsi_barang',
-        'harga_barang',
-        'stok_barang',
-        'foto_barang',
-        'slug',
+        'id',
+        'total_saldo'
     ];
-
-    /**
-     * Returns the user this transaksi belongs to
-     *
-     * @return  \App\Models\Barang
-     */
-    public function kategoribarang()
-    {
-        return $this->hasMany(Barang::class, 'uid_bk', 'uid_bk');
-    }
 
     public static function boot()
     {
         parent::boot();
         static::creating(function ($model) {
-            $model->uid_b = Uuid::uuid4()->toString();
+            $model->uid_s = Uuid::uuid4()->toString();
         });
     }
 }

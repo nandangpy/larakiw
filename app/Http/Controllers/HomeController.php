@@ -22,9 +22,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(): View
+    public function index()
     {
-        return view('home');
+
+        return redirect(session()->get('url.intended'));
+        // return view('pages.public.index');
     }
 
     /**
@@ -35,10 +37,9 @@ class HomeController extends Controller
     public function adminHome(): View
     {
         $active = 'home';
-        return view('pages.admin.index', compact( 
+        return view('pages.admin.index', compact(
             'active',
         ));
-        
     }
 
     // /**

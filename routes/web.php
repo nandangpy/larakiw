@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\News\NewsController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\News\NewsController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\BarangController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\KategoribarangController;
-
+use App\Http\Controllers\BerandaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,13 +20,14 @@ use App\Http\Controllers\Admin\KategoribarangController;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.public.index');
+Route::get('/beli', function () {
+    return view('pages.public.beli');
 });
 
+// Route::get('/news', [NewsController::class, 'index'])->name('news');
+// Route::get('/news/{berita:slug}', [NewsController::class, 'show'])->name('news-show');
 
-Route::get('/news', [NewsController::class, 'index'])->name('news');
-Route::get('/news/{berita:slug}', [NewsController::class, 'show'])->name('news-show');
+Route::get('/', [BerandaController::class, 'index']);
 
 
 // LOGIN?REGISTER?
@@ -56,19 +58,8 @@ Route::group([
 ], function () {
     Route::get('/home', [HomeController::class, 'adminHome'])->name('dashboard-admin');
     Route::resource('kategoribarang', KategoribarangController::class);
+    Route::resource('barang', BarangController::class);
 });
-
-
-/*------------------------------------------
-All Admin Routes List
---------------------------------------------*/
-// Route::group([
-//     'prefix' => 'partner',
-//     'middleware' => ['auth' => 'UserAccess:partner']
-// ], function () {
-//     Route::get('/home', [HomeController::class, 'partnerHome'])->name('dashboard-partner');
-// });
-
 
 /*------------------------------------------
 All Normal Users Routes List
