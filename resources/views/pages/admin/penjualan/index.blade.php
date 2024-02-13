@@ -41,7 +41,8 @@
                                                         Tanggal Awal
                                                     </div>
                                                 </div>
-                                                <input type="date" class="form-control datepicker" name="fromDate" required>
+                                                <input type="date" class="form-control datepicker" name="fromDate"
+                                                    required>
                                             </div>
                                         </div>
                                         <div class="col form-group mb-0">
@@ -51,83 +52,99 @@
                                                         Tanggal Akhir
                                                     </div>
                                                 </div>
-                                                <input type="date" class="form-control datepicker" name="toDate" required>
+                                                <input type="date" class="form-control datepicker" name="toDate"
+                                                    required>
                                             </div>
                                         </div>
                                     </div>
-        
-                                    <div class="row my-2">
-                                        <button type="submit" class="btn btn-outline-success m-1"><i class="fas fa-filter"></i>
-                                            filter</button>
-        
-                                        <a href="" class="btn btn-outline-secondary m-1"><i
-                                                class="fas fa-arrows-rotate"></i>
-                                            Refresh
-                                        </a>
-                                        <button type="button" class="btn btn-outline-warning m-1" data-toggle="modal"
-                                            data-target="#exampleModalCenter">
-                                            <i class="far fa-file-alt"></i> Cetak Periode</button>
-        
-                                    </div>
+
+                                    <a href="" class="btn btn-outline-secondary m-1"><i
+                                            class="fas fa-arrows-rotate"></i>
+                                        Refresh
+                                    </a>
+                                    <button type="submit" class="btn btn-outline-success m-1"><i
+                                            class="fas fa-filter"></i>
+                                        filter</button>
                                 </form>
-                        </div>
 
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-md" id="tblkate">
-                                <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <th>Barang</th>
-                                        <th>Jumlah Item</th>
-                                        <th>Total Harga</th>
-                                        <th>Status Pesanan</th>
-                                        <th class="text-center">Tanggal Order</th>
-                                    </tr>
-                                </thead>
+                                <div class="row my-2">
 
-                                <tbody>
-                                    @if (!empty($data))
-                                    @foreach ($data as $item)
-                                    <tr>
-                                        <td>
-                                            {{ $loop->iteration }}
-                                        </td>
+                                    <button type="button" class="btn btn-outline-warning m-1" data-toggle="modal"
+                                        data-target="#exampleModalCenter">
+                                        <i class="far fa-file-alt"></i> Cetak Periode
+                                    </button>
 
-                                        <td>
-                                            {{ $item->barang['nama_barang'] }}
-                                        </td>
+                                    <form action="{{ route('print-laporan-harian')}}" method="GET">
+                                        <button type="submit" class="btn btn-outline-info m-1">
+                                            <i class="far fa-file-alt"></i> Cetak Harian
+                                        </button>
+                                    </form>
 
-                                        <td>
-                                            {{ $item->jumlah_item}}
-                                        </td>
+                                    <form action="{{ route('print-laporan-bulanan')}}" method="GET">
+                                        <button type="submit" class="btn btn-outline-info m-1">
+                                            <i class="far fa-file-alt"></i> Cetak Bulanan
+                                        </button>
+                                    </form>
 
-                                        <td>
-                                            @currency($item->total_harga)
-                                        </td>
+                                </div>
+                            </div>
 
-                                        <td>
-                                            @if ($item->status == 'DITERIMA')
-                                            <div class="badge badge-success">Barang Diterima</div>
-                                            @else
-                                            <div class="badge badge-danger">Proses Pengiriman</div>
-                                            @endif
-                                        </td>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-md" id="tblkate">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Barang</th>
+                                            <th>Jumlah Item</th>
+                                            <th>Total Harga</th>
+                                            <th>Status Pesanan</th>
+                                            <th class="text-center">Tanggal Order</th>
+                                        </tr>
+                                    </thead>
 
-                                        <td class="text-center">
-                                            {{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y')}}
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                    @else
+                                    <tbody>
+                                        @if (!empty($data))
+                                        @foreach ($data as $item)
+                                        <tr>
+                                            <td>
+                                                {{ $loop->iteration }}
+                                            </td>
 
-                                    @endif
-                                </tbody>
-                            </table>
+                                            <td>
+                                                {{ $item->barang['nama_barang'] }}
+                                            </td>
+
+                                            <td>
+                                                {{ $item->jumlah_item}}
+                                            </td>
+
+                                            <td>
+                                                @currency($item->total_harga)
+                                            </td>
+
+                                            <td>
+                                                @if ($item->status == 'DITERIMA')
+                                                <div class="badge badge-success">Barang Diterima</div>
+                                                @else
+                                                <div class="badge badge-danger">Proses Pengiriman</div>
+                                                @endif
+                                            </td>
+
+                                            <td class="text-center">
+                                                {{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y')}}
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                        @else
+
+                                        @endif
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
     </section>
     {{-- --}}

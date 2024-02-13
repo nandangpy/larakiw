@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use App\Models\Transaksi;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -24,7 +24,7 @@ class PenjualanController extends Controller
 
     public function filterperiode(Request $request)
     {
-        
+
         $tglAwal = $request->get('fromDate');
         $tglAkhir = $request->get('toDate');
 
@@ -32,7 +32,7 @@ class PenjualanController extends Controller
             ->whereBetween('created_at', [$tglAwal, $tglAkhir])
             ->orderBy('created_at', 'ASC')
             ->get();
-        
+
         return view('pages.admin.penjualan.index', [
             'data' => $data
         ]);
@@ -51,7 +51,6 @@ class PenjualanController extends Controller
 
         $totalPendapatan = $laporanPeriode->sum('total_harga');
 
-        // dd($totalPendapatan);
         $pdf = Pdf::loadView('pages.print.print-laporan', [
             'laporanPeriode' => $laporanPeriode,
             'fromDate' => $fromDate,
@@ -59,6 +58,39 @@ class PenjualanController extends Controller
             'totalPendapatan' => $totalPendapatan
         ]);
         $docName = $toDate . '-' . 'Laporan-All';
+        return $pdf->stream($docName);
+    }
+
+    public function cetaklaporanharian()
+    {
+
+        $tanggal = Carbon::today();
+        $laporanPeriode = Transaksi::with('barang')->whereIn('status', ['DITERIMA'])->whereDate('created_at', $tanggal)->get();
+        $totalPendapatan = $laporanPeriode->sum('total_harga');
+
+        $pdf = Pdf::loadView('pages.print.print-laporan', [
+            'laporanPeriode' => $laporanPeriode,
+            'toDate' => $tanggal,
+            'totalPendapatan' => $totalPendapatan
+        ]);
+        $docName = $tanggal . '-' . 'Laporan-Harian';
+        return $pdf->stream($docName);
+    }
+
+    public function cetaklaporanbulanan()
+    {
+
+        $bulanIni = Carbon::now()->format('m');
+        $laporanPeriode = Transaksi::with('barang')->whereIn('status', ['DITERIMA'])->whereMonth('created_at', $bulanIni)->get();
+        $totalPendapatan = $laporanPeriode->sum('total_harga');
+
+        // dd(Carbon::createFromFormat('!m', $bulanIni)->format('F'));
+        $pdf = Pdf::loadView('pages.print.print-laporan', [
+            'laporanPeriode' => $laporanPeriode,
+            'toMonth' => Carbon::createFromFormat('!m', $bulanIni)->format('F'),
+            'totalPendapatan' => $totalPendapatan
+        ]);
+        $docName = $bulanIni . '-' . 'Laporan-Bulanan';
         return $pdf->stream($docName);
     }
 }
