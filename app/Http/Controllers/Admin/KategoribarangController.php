@@ -15,9 +15,8 @@ class KategoribarangController extends Controller
     public function index()
     {
         //
-        $active = 'kategoribarang';
         $data = Kategoribarang::all();
-        return view('pages.admin.kategoribarang.index', compact('active', 'data'));
+        return view('pages.admin.kategoribarang.index', compact('data'));
     }
 
     /**
@@ -26,8 +25,7 @@ class KategoribarangController extends Controller
     public function create()
     {
         //
-        $active = 'kategoribarang';
-        return view('pages.admin.kategoribarang.kategoribarang-create', compact('active'));
+        return view('pages.admin.kategoribarang.kategoribarang-create');
     }
 
     /**
@@ -43,7 +41,6 @@ class KategoribarangController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator->errors())->withInput();
         } else {
-
             $data = new Kategoribarang();
             $data->nama_kategori = $request->get('nama_kategori');
             $data->save();
@@ -58,8 +55,7 @@ class KategoribarangController extends Controller
     {
         //
         $data = Kategoribarang::findOrFail($id);
-        $active = 'kategoribarang';
-        return view('pages.admin.kategoribarang.kategoribarang-detail', compact('active', 'data'));
+        return view('pages.admin.kategoribarang.kategoribarang-detail', compact('data'));
     }
 
     /**
@@ -69,8 +65,7 @@ class KategoribarangController extends Controller
     {
         //
         $data = Kategoribarang::findOrFail($id);
-        $active = 'kategoribarang';
-        return view('pages.admin.kategoribarang.kategoribarang-edit', compact('active', 'data'));
+        return view('pages.admin.kategoribarang.kategoribarang-edit', compact('data'));
     }
 
     /**

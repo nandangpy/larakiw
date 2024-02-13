@@ -8,10 +8,10 @@
             <i class="fas fa-ellipsis-v"></i>
         </a>
         <ul class="navbar-nav">
-            <li class="nav-item {{ $active == 'barang' ? 'active' : '' }}"><a href="/" class="nav-link">Beranda</a></li>
-            <li class="nav-item {{ $active == 'tentang' ? 'active' : '' }}"><a href="{{route('tentang-kami')}}"
+            <li class="nav-item {{ (request()->is('/')) ? 'active' : '' }}"><a href="/" class="nav-link">Beranda</a></li>
+            <li class="nav-item {{ (request()->is('tentang')) ? 'active' : '' }}"><a href="{{route('tentang-kami')}}"
                     class="nav-link">Tentang Kami</a></li>
-            <li class="nav-item {{ $active == 'kontak' ? 'active' : '' }}"><a href="{{route('kontak-kami')}}"
+            <li class="nav-item {{ (request()->is('kontak')) ? 'active' : '' }}"><a href="{{route('kontak-kami')}}"
                     class="nav-link">Kontak</a></li>
         </ul>
     </div>
@@ -39,10 +39,10 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-title">Hi !!</div>
-                <a href="{{route('pesanan-saya')}}" class="dropdown-item has-icon">
+                <a href="{{route('pesanan-saya')}}" class="dropdown-item has-icon {{ (request()->is('pesanan-saya*')) ? 'active' : '' }}">
                     <i class="fas fa-shopping-bag"></i> Pesanan Saya
                 </a>
-                <a href="{{route('historypembelian-saya')}}" class="dropdown-item has-icon">
+                <a href="{{route('historypembelian-saya')}}" class="dropdown-item has-icon {{ (request()->is('historypembelian-saya*')) ? 'active' : '' }}">
                     <i class="fas fa-archive"></i> Riwayat Belanja
                 </a>
                 <div class="dropdown-divider"></div>

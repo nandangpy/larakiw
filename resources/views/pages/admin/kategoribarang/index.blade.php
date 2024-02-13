@@ -52,7 +52,7 @@
                                             {{ $item->nama_kategori }}
                                         </td>
 
-                                        <td>
+                                        <td class="text-center">
                                             <form action="{{ route('kategoribarang.destroy', $item->uid_bk) }}"
                                                 method="POST">
                                                 @csrf

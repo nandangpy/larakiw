@@ -23,14 +23,21 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('pakdio123'),
                 'role' => 1,
                 'name' => 'Admin tokopadio',
-            ] ,
+            ],
             [
                 'id' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
-                'email' => 'nandang.own@gmail.com',
+                'email' => 'nandang@gmail.com',
                 'password' => Hash::make('12345'),
                 'role' => 0,
                 'name' => 'Nandang',
-            ] ,
+            ],
+            [
+                'id' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
+                'email' => 'prayogi@gmail.com',
+                'password' => Hash::make('12345'),
+                'role' => 0,
+                'name' => 'Prayogi',
+            ],
         ]);
     }
 }

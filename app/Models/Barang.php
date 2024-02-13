@@ -47,4 +47,12 @@ class Barang extends Model
             $model->uid_b = Uuid::uuid4()->toString();
         });
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, fn($query, $search) =>
+            $query->where('nama_barang', 'like', '%' . request('search') . '%')
+                ->orWhere('deskripsi_barang', 'like', '%' . request('search') . '%'));
+        
+    }
 }

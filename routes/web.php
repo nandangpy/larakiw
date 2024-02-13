@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\BarangController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\KategoribarangController;
 use App\Http\Controllers\Admin\TransaksiController;
+use App\Http\Controllers\Admin\PenjualanController;
 
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\BeliController;
@@ -26,7 +27,7 @@ use App\Http\Controllers\TransaksisayaController;
 */
 
 
-Route::get('/', [BerandaController::class, 'index']);
+Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 Route::get('/tentang', [BerandaController::class, 'tentangkami'])->name('tentang-kami');
 Route::get('/kontak', [BerandaController::class, 'kontakkami'])->name('kontak-kami');
 
@@ -65,6 +66,9 @@ Route::group([
     Route::resource('barang', BarangController::class);
     Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi');
     Route::put('/transaksi/{uid_tr}', [TransaksiController::class, 'pesanandikirim'])->name('pesanan-dikirim');
+    Route::get('/penjualan', [PenjualanController::class, 'index'])->name('penjualan');
+    Route::post('/penjualan', [PenjualanController::class, 'filterperiode'])->name('penjualan-filter');
+    Route::post('/penjualan/print', [PenjualanController::class, 'cetaklaporanperiode'])->name('print-laporan');
 });
 
 /*------------------------------------------
@@ -79,6 +83,5 @@ Route::group([
     Route::put('/pesanan-saya/{uid_tr}', [TransaksisayaController::class, 'pesananditerima'])->name('pesanan-diterima');
     Route::get('/historypembelian-saya', [HistoripembelianController::class, 'historypembelian'])->name('historypembelian-saya');
 
-    // Route::get('laporan-penjualan/pertransaksi/{id}', [LaporanpenjualanController::class, 'cetakLaporanpertransaksi'])->name('print.cetaklaporanpertransaksi');
     Route::get('/pesanan-saya/print/{uid_tr}', [TransaksisayaController::class, 'cetakinvoice'])->name('print-invoice');
 });

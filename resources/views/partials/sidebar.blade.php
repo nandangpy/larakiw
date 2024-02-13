@@ -48,36 +48,36 @@
         <ul class="sidebar-menu">
             <hr>
             @if (Auth()->user()->role == 'admin')
-            <li class="nav-item {{ $active == 'home' ? 'active' : '' }}">
+            <li class="nav-item {{ (request()->is('admin/home*')) ? 'active' : '' }}">
                 <a href="{{route('dashboard-admin')}}" class="nav-link">
                     <i class="fas fa-fire"></i>
                     <span>Dashboard Admin</span>
                 </a>
             </li>
 
-            <li class="nav-item {{ $active == 'kategoribarang' ? 'active' : '' }}">
+            <li class="nav-item {{ (request()->is('admin/kategoribarang*')) ? 'active' : '' }}">
                 <a href="{{route('kategoribarang.index')}}" class="nav-link">
                     <i class="fas fa-fire"></i>
                     <span>Kategori Barang</span>
                 </a>
             </li>
 
-            <li class="nav-item {{ $active == 'barang' ? 'active' : '' }}">
+            <li class="nav-item {{ (request()->is('admin/barang*')) ? 'active' : '' }}">
                 <a href="{{route('barang.index')}}" class="nav-link">
                     <i class="fas fa-fire"></i>
                     <span>Barang</span>
                 </a>
             </li>
 
-            <li class="nav-item {{ $active == 'transaksi' ? 'active' : '' }}">
+            <li class="nav-item {{ (request()->is('admin/transaksi*')) ? 'active' : '' }}">
                 <a href="{{route('transaksi')}}" class="nav-link">
                     <i class="fas fa-fire"></i>
                     <span>Transaksi</span>
                 </a>
             </li>
 
-            <li class="nav-item {{ $active == 'x' ? 'active' : '' }}">
-                <a href="{{route('dashboard-admin')}}" class="nav-link">
+            <li class="nav-item {{ (request()->is('admin/penjualan*')) ? 'active' : '' }}">
+                <a href="{{route('penjualan')}}" class="nav-link">
                     <i class="fas fa-fire"></i>
                     <span>Penjualan</span>
                 </a>
