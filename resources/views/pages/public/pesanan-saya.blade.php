@@ -11,7 +11,7 @@
 
                     <div class="row mt-4">
                         <div class="col-md-12">
-                          <div class="section-title">Detail Pesanan Anda:</div>
+                            <div class="section-title">Detail Pesanan Anda:</div>
 
                             <div class="table-responsive">
                                 <table class="table table-striped table-hover table-md">
@@ -20,43 +20,60 @@
                                         <th class="text-center">Jumlah</th>
                                         <th class="text-right">Total Harga</th>
                                         <th class="text-center">Status</th>
+                                        <th class="text-center">Cetak Invoice</th>
                                         <th class="text-right">Acc Penerimaan Barang</th>
                                     </tr>
 
 
                                     @foreach ($data as $itemdata)
                                     <tr>
-                                        <td>{{ $itemdata->barang['nama_barang'] }}</td>   
+                                        <td>{{ $itemdata->barang['nama_barang'] }}</td>
                                         <td class="text-center">{{ $itemdata->jumlah_item }}</td>
                                         <td class="text-right">@currency( $itemdata->total_harga )</td>
                                         <td class="text-center">
                                             @if ($itemdata->status == 'DIBAYAR')
                                             <div class="badge badge-primary">DIBAYAR</div>
                                             @else
-                                            <div class="badge badge-primary">DIKIRIM</div>
+                                            <div class="badge badge-success">DIKIRIM</div>
                                             @endif
+                                        </td>
+
+                                        <td class="text-center">
+                                            {{-- <a
+                                                href="{{ route('print.cetaklaporanpertransaksi', $data->id_order) }}"
+                                                class="btn btn-sm btn-warning"><i class="fas fa-print"></i>
+                                                Cetak
+                                            </a> --}}
+                                            <a href="{{route('print-invoice', [$itemdata->uid_tr])}}"
+                                                class="btn btn-sm btn-warning"><i class="fas fa-print"></i>
+                                                Cetak
+                                            </a>
                                         </td>
 
                                         <td class="text-right">
                                             {{-- TAMPIL SAAT STATUS DIKIRIM --}}
-                                            @if ($itemdata->status == 'DIBAYAR')
-                                            <form method="POST" action="{{route('pesanan-diterima', [$itemdata->uid_tr])}}" method="POST"
+                                            @if ($itemdata->status == 'DIKIRIM')
+                                            <form method="POST"
+                                                action="{{route('pesanan-diterima', [$itemdata->uid_tr])}}"
                                                 enctype="multipart/form-data">{{method_field("PUT")}}@csrf
                                                 <button type="submit" class="btn btn-sm btn-info">
                                                     <i class="fas fa-check"></i> Pesanan Diterima
                                                 </button>
                                             </form>
+
+                                            @else
+                                            <div class="badge badge-danger">Pesanan Belum Dikirim</div>
                                             @endif
                                         </td>
                                     </tr>
                                     @endforeach
-                                
+
                                 </table>
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
-        </div>
     </section>
 </div>
 

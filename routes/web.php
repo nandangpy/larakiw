@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\TransaksiController;
 
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\BeliController;
+use App\Http\Controllers\HistoripembelianController;
 use App\Http\Controllers\TransaksisayaController;
 
 /*
@@ -24,14 +25,11 @@ use App\Http\Controllers\TransaksisayaController;
 |
 */
 
-Route::get('/pesanan', function () {
-    // return view('pages.public.pesanan-saya');
-});
-
-// Route::get('/news', [NewsController::class, 'index'])->name('news');
-// Route::get('/news/{berita:slug}', [NewsController::class, 'show'])->name('news-show');
 
 Route::get('/', [BerandaController::class, 'index']);
+Route::get('/tentang', [BerandaController::class, 'tentangkami'])->name('tentang-kami');
+Route::get('/kontak', [BerandaController::class, 'kontakkami'])->name('kontak-kami');
+
 
 Route::get('/beli/{uid_b}', [BeliController::class, 'beli'])->name('beli');
 
@@ -66,6 +64,7 @@ Route::group([
     Route::resource('kategoribarang', KategoribarangController::class);
     Route::resource('barang', BarangController::class);
     Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi');
+    Route::put('/transaksi/{uid_tr}', [TransaksiController::class, 'pesanandikirim'])->name('pesanan-dikirim');
 });
 
 /*------------------------------------------
@@ -74,8 +73,12 @@ All Normal Users Routes List
 Route::group([
     'middleware' => ['auth' => 'UserAccess:customer']
 ], function () {
-    
+
     Route::put('/beli/{uid_b}', [BeliController::class, 'belimainan'])->name('beli-mainan');
     Route::get('/pesanan-saya', [TransaksisayaController::class, 'transaksisaya'])->name('pesanan-saya');
-    Route::get('/pesanan-saya/{uid_tr}', [TransaksisayaController::class, 'pesananditerima'])->name('pesanan-diterima');
+    Route::put('/pesanan-saya/{uid_tr}', [TransaksisayaController::class, 'pesananditerima'])->name('pesanan-diterima');
+    Route::get('/historypembelian-saya', [HistoripembelianController::class, 'historypembelian'])->name('historypembelian-saya');
+
+    // Route::get('laporan-penjualan/pertransaksi/{id}', [LaporanpenjualanController::class, 'cetakLaporanpertransaksi'])->name('print.cetaklaporanpertransaksi');
+    Route::get('/pesanan-saya/print/{uid_tr}', [TransaksisayaController::class, 'cetakinvoice'])->name('print-invoice');
 });

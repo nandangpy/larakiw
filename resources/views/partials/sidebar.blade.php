@@ -79,14 +79,9 @@
             <li class="nav-item {{ $active == 'x' ? 'active' : '' }}">
                 <a href="{{route('dashboard-admin')}}" class="nav-link">
                     <i class="fas fa-fire"></i>
-                    <span>Penjulan</span>
+                    <span>Penjualan</span>
                 </a>
             </li>
             @endif
-            {{-- @if (Auth()->user()->role == 'partner')
-
-
-
-            @endif --}}
     </aside>
 </div>

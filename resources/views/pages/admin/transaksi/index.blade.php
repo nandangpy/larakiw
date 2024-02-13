@@ -13,7 +13,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>Transaksi</h1>
+            <h1>Data Transaksi</h1>
         </div>
         <div class="row mt-4">
             <div class="col">
@@ -28,7 +28,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        
+
 
                         <div class="table-responsive">
                             <table class="table table-bordered table-md" id="tblkate">
@@ -52,7 +52,7 @@
                                         </td>
                                         <td>
                                             {{ $item->barang['nama_barang'] }}
-                                        
+
                                         <td>
                                             {{ $item->jumlah_item}}
                                         </td>
@@ -63,25 +63,23 @@
 
                                         <td>
                                             @if ($item->status == 'DIBAYAR')
-                                            <div class="badge badge-primary">DIBAYAR</div>
+                                            <div class="badge badge-warning">SUDAH DIBAYAR</div>
                                             @else
-                                            <div class="badge badge-primary">DIKIRIM</div>
+                                            <div class="badge badge-primary">PROSES PENGIRIMAN</div>
                                             @endif
                                         </td>
 
                                         <td>
 
-                                            {{-- <form action="{{ route('barang.destroy', $item->uid_b) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <a href="{{ route('barang.show', $item->uid_b) }}"
-                                                    class="btn btn-sm btn-info"><i class="fas fa-info-circle"></i></a>
-                                                <a href="{{ route('barang.edit', $item->uid_b) }}"
-                                                    class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
-                                                <button type="submit" class="btn btn-sm btn-danger"><i
-                                                        class="fas fa-trash"></i></button>
-                                            </form> --}}
-                                            
+                                            @if ($item->status == 'DIBAYAR')
+                                            <form method="POST" action="{{route('pesanan-dikirim', [$item->uid_tr])}}"
+                                                enctype="multipart/form-data">{{method_field("PUT")}}@csrf
+                                                <button type="submit" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-check"></i>Ubah Pesanan Dikirim
+                                                </button>
+                                            </form>
+                                            @endif
+
                                         </td>
                                     </tr>
                                     @endforeach

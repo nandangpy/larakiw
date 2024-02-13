@@ -4,27 +4,29 @@
 
 
     <div class="nav-collapse">
-        <a class="sidebar-gone-show nav-collapse-toggle nav-link" href="#">
+        <a class="sidebar-gone-show nav-collapse-toggle nav-link" href="">
             <i class="fas fa-ellipsis-v"></i>
         </a>
         <ul class="navbar-nav">
-            <li class="nav-item active"><a href="/" class="nav-link">Beranda</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Tentang Kami</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Kontak</a></li>
+            <li class="nav-item {{ $active == 'barang' ? 'active' : '' }}"><a href="/" class="nav-link">Beranda</a></li>
+            <li class="nav-item {{ $active == 'tentang' ? 'active' : '' }}"><a href="{{route('tentang-kami')}}"
+                    class="nav-link">Tentang Kami</a></li>
+            <li class="nav-item {{ $active == 'kontak' ? 'active' : '' }}"><a href="{{route('kontak-kami')}}"
+                    class="nav-link">Kontak</a></li>
         </ul>
     </div>
 
     <form class="form-inline ml-auto">
         <ul class="navbar-nav">
-            <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i
-                        class="fas fa-search"></i></a></li>
+            <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none">
+                    <i class="fas fa-search"></i></a></li>
         </ul>
 
     </form>
 
 
     <ul class="navbar-nav navbar-right">
-        
+
         @guest
 
         <li><a href="{{ route('login') }}" class="nav-link"><i class="fas fa-sign-out-alt"></i> LOGIN</a></li>
@@ -36,9 +38,12 @@
                 <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->name }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-title">Logged in 5 min ago</div>
-                <a href="features-profile.html" class="dropdown-item has-icon">
-                    <i class="far fa-user"></i> Profile
+                <div class="dropdown-title">Hi !!</div>
+                <a href="{{route('pesanan-saya')}}" class="dropdown-item has-icon">
+                    <i class="fas fa-shopping-bag"></i> Pesanan Saya
+                </a>
+                <a href="{{route('historypembelian-saya')}}" class="dropdown-item has-icon">
+                    <i class="fas fa-archive"></i> Riwayat Belanja
                 </a>
                 <div class="dropdown-divider"></div>
 
@@ -48,10 +53,6 @@
                         <i class="text-danger fas fa-sign-out-alt"></i> Logout
                     </button>
                 </form>
-
-                {{-- <a href="#" class="dropdown-item has-icon text-danger">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a> --}}
             </div>
         </li>
         @endguest
