@@ -62,7 +62,7 @@
 
 <body>
     <div class="center full" style="margin-top: 0px">
-        <img style="display:inline-block; float:left;" src="assets/img/logo-srm.png" alt="" width="151" height="90">
+        <img style="display:inline-block; float:left;" src="assets/img/logo-kiwkiw@.png" alt="" width="151" height="90">
 
         <h5><strong>TOKO PAKDIO</strong></h5>
         <p>Jalan Sawah No.2B, Pegirian, Surabaya. <br>
@@ -78,9 +78,9 @@
             <thead>
                 <tr style="background-color: #6a7faf;">
                     <th scope="col">No. Order</th>
-                    <th scope="col">Customer</th>
+                    <th scope="col">Barang</th>
                     <th scope="col">Tanggal</th>
-                    <th scope="col">Mobil / Unit</th>
+                    <th scope="col">Jumlah</th>
                     <th scope="col">Harga</th>
                 </tr>
             </thead>
@@ -88,11 +88,11 @@
                 @if (!empty($laporanPeriode))
                 @foreach ($laporanPeriode as $data)
                 <tr>
-                    <td>{{ $data->order_number }}</td>
-                    <td>{{ $data->nama_lengkap }}</td>
-                    <td>{{date('d-F-Y', strtotime($data->order_date)) }}</td>
-                    <td>{{ $data->nama_mobil }}</td>
-                    <td>@currency( $data->harga_mobil )</td>
+                    <td>{{ $data->uid_tr }}</td>
+                    <td>{{ $data->barang['nama_barang'] }}</td>
+                    <td>{{date('d-F-Y', strtotime($data->created_at)) }}</td>
+                    <td>{{ $data->jumlah_item }}</td>
+                    <td>@currency( $data->total_harga )</td>
                 </tr>
                 @endforeach
                 @else

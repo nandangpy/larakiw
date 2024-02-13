@@ -67,7 +67,8 @@ Route::group([
     Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi');
     Route::put('/transaksi/{uid_tr}', [TransaksiController::class, 'pesanandikirim'])->name('pesanan-dikirim');
     Route::get('/penjualan', [PenjualanController::class, 'index'])->name('penjualan');
-    Route::post('/penjualan', [PenjualanController::class, 'filterPeriode'])->name('penjualan-filter');
+    Route::post('/penjualan', [PenjualanController::class, 'filterperiode'])->name('penjualan-filter');
+    Route::post('/penjualan/print', [PenjualanController::class, 'cetaklaporanperiode'])->name('print-laporan');
 });
 
 /*------------------------------------------

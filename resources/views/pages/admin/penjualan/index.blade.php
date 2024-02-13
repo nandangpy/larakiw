@@ -31,8 +31,8 @@
 
                         <div class="row">
                             <div class="card-body">
-                                <form action="{{ route('penjualan-filter')}}" method="POST">
-                                    {{-- @csrf --}}
+                                <form action="" method="POST">
+                                    @csrf
                                     <div class="row">
                                         <div class="col form-group mb-0">
                                             <div class="input-group">
@@ -143,7 +143,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{}}" method="POST">
+
+            <form action="{{ route('print-laporan') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
