@@ -16,9 +16,8 @@ class BeliController extends Controller
     public function beli(string $id)
     {
         //
-        $active = 'kategoribarang';
         $data = Barang::findOrFail($id);
-        return view('pages.public.beli', compact('active', 'data'));
+        return view('pages.public.beli', compact('data'));
     }
 
     public function belimainan(Request $request, string $id)
@@ -31,13 +30,9 @@ class BeliController extends Controller
             if ($userSaldo['total_saldo'] < $totalHarga) {
                 echo "isi saldo";
                 // REDIRECT KE SALDO
-                // return redirect('/mysaldo');
             } else {
-                echo "lanjut beli";
-
                 // Kurangi Saldo
                 $sisaSaldo = $userSaldo['total_saldo'] - $totalHarga;
-
                 // Kurangi Stok
                 $sisaStok = $data->stok_barang - $request->get('jumlah_unit');
 
@@ -64,8 +59,7 @@ class BeliController extends Controller
                     return redirect()->route('pesanan-saya')->with('msg', "Data Berhasil Disimpan");
                 }
             }
-
-            // dd($totalHarga);
+            
         } else {
             return redirect('/auth/login');
         }

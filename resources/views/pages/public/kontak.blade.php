@@ -17,10 +17,10 @@
                             <div class="row m-0">
                                 <div class="col-12 col-md-12 col-lg-5 p-0">
                                     <div class="card-header text-center">
-                                        <h4>Contact Us</h4>
+                                        <h4>Kontak Kami</h4>
                                     </div>
                                     <div class="card-body">
-                                        <form method="POST">
+                                        <form method="">
                                             <div class="form-group floating-addon">
                                                 <label>Name</label>
                                                 <div class="input-group">

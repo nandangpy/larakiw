@@ -18,10 +18,8 @@ class BerandaController extends Controller
      */
     public function index(): View
     {
-
-        $active = 'barang';
-        $data = Barang::with('Kategoribarang')->paginate(2);
-        return view('pages.public.index', compact('active', 'data'));
+        $data = Barang::with('Kategoribarang')->latest()->filter(request(['search']))->paginate(4);
+        return view('pages.public.index', compact('data'));
     }
 
     /**
@@ -31,8 +29,7 @@ class BerandaController extends Controller
      */
     public function tentangkami(): View
     {
-        $active = 'tentang';
-        return view('pages.public.tentang', compact('active'));
+        return view('pages.public.tentang');
     }
 
     /**
@@ -42,7 +39,6 @@ class BerandaController extends Controller
      */
     public function kontakkami(): View
     {
-        $active = 'kontak';
-        return view('pages.public.kontak', compact('active'));
+        return view('pages.public.kontak');
     }
 }

@@ -127,17 +127,17 @@
         <table class="header full">
 
             <tr>
-                <td rowspan="2" class="extended"><img style="display:inline-block;" src="assets/img/logo-srm.png" alt=""
-                        width="170" height="80"></td>
+                <td rowspan="2" class="extended"><img style="display:inline-block;" src="assets/img/logo-kiwkiw@.png" alt=""
+                        width="170" height="70"></td>
                 <td>
                     <h5><strong>TOKO PAKDIO</strong></h5>
                 </td>
             </tr>
             <tr>
                 <td class="normal">
-                    Jalan Gubeng Kertajaya IX No.5B, Airlangga, Kec. Gubeng, Kota Surabaya. <br>
-                    Telp: (031) 80202023 <br>
-                    Email: sysadmin@srm.com <br>
+                    Jalan Sawah No.2B, Pegirian, Surabaya. <br>
+                    Telp: (021) 231074433 <br>
+                    Email: nandang@tokopakdio.com <br>
                 </td>
             </tr>
         </table>
@@ -148,46 +148,29 @@
         <h3><strong style="color: grey;">INVOICE</strong></h3>
         <table class="report full">
             <tr class="title">
-                <td class="normal no-bottom no-left">Kepada</td>
-                <td class="small no-bottom">Refrensi</td>
-                <td class="small no-bottom">Tanggal Order</td>
+                <td class="normal no-bottom no-left">No. {{ $invoicePesanan->uid_tr }}</td>
+                <td class="small no-bottom"><strong>Tgl Order:</strong> {{ \Carbon\Carbon::parse($invoicePesanan->created_at)->format('d/m/Y')}}</td>
+                {{-- <td class="small no-bottom">Tanggal Order</td> --}}
             </tr>
-            {{-- <tr>
-                <td class="no-left no-top">
-                    {{ $invoicePesanan->nama_lengkap }} <br>
-                    {{ $invoicePesanan->alamat_customer }} <br>
-                    Telp: {{ $invoicePesanan->nohp }} <br>
-                    Email: {{ $invoicePesanan->email }}
-                </td>
-                <td class="no-top vatop">
-                    {{ $invoicePesanan->order_number }}
-                </td>
-
-                <td class="no-top vatop">
-                    {{ Carbon\Carbon::parse($invoicePesanan->order_date)->format('j F Y') }}
-                </td>
-            </tr> --}}
+            
         </table>
     </div>
 
     <div class="wrapper mt-5">
         <table class="table table-bordered">
             <thead>
-                <tr style="background-color: #e61c23; color: white">
-                    <th scope="col">Merek</th>
-                    <th scope="col">Product / Unit</th>
-                    <th scope="col">Transmisi</th>
-                    <th scope="col">Warna</th>
-                    <th scope="col">Harga</th>
+                <tr style="background-color: #1c6de6; color: white">
+                    <th scope="col">Barang</th>
+                    <th scope="col">Jumlah</th>
+                    <th scope="col">Total Harga</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <th scope="row"> {{ $invoicePesanan->uid_tr }}</th>
-                    {{-- <td> {{ $invoicePesanan->nama_mobil }}</td>
-                    <td> @if ($invoicePesanan->transmisi == 'A') Automatic @else Manual @endif</td>
-                    <td> {{ $invoicePesanan->warna_mobil }} </td> --}}
+                    <th scope="row"> {{ $invoicePesanan->barang['nama_barang'] }}</th>
+                    <td> {{ $invoicePesanan->jumlah_item }}</td>
                     <td> @currency( $invoicePesanan->total_harga ) </td>
+                    
                 </tr>
             </tbody>
         </table>

@@ -52,6 +52,7 @@
                                         </td>
                                         <td>
                                             {{ $item->barang['nama_barang'] }}
+                                        </td>
 
                                         <td>
                                             {{ $item->jumlah_item}}
@@ -69,8 +70,7 @@
                                             @endif
                                         </td>
 
-                                        <td>
-
+                                        <td class="text-center">
                                             @if ($item->status == 'DIBAYAR')
                                             <form method="POST" action="{{route('pesanan-dikirim', [$item->uid_tr])}}"
                                                 enctype="multipart/form-data">{{method_field("PUT")}}@csrf
@@ -79,7 +79,6 @@
                                                 </button>
                                             </form>
                                             @endif
-
                                         </td>
                                     </tr>
                                     @endforeach

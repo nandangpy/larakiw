@@ -59,7 +59,7 @@
                                             {{ $item->stok_barang }}
                                         </td>
 
-                                        <td>
+                                        <td class="text-center">
                                             <form action="{{ route('barang.destroy', $item->uid_b) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')

@@ -19,9 +19,8 @@ class BarangController extends Controller
     public function index()
     {
         //
-        $active = 'barang';
         $data = Barang::all();
-        return view('pages.admin.barang.index', compact('active', 'data'));
+        return view('pages.admin.barang.index', compact('data'));
     }
 
     /**
@@ -30,9 +29,8 @@ class BarangController extends Controller
     public function create()
     {
         //
-        $active = 'barang';
         $datajenis = Kategoribarang::all();
-        return view('pages.admin.barang.barang-create', compact('active', 'datajenis'));
+        return view('pages.admin.barang.barang-create', compact('datajenis'));
     }
 
     /**
@@ -61,7 +59,7 @@ class BarangController extends Controller
             $data->slug = Str::slug($request->nama_barang);
             $data->harga_barang = $request->get('harga_barang');
             $data->stok_barang = $request->get('stok_barang');
-
+            
             if ($request->hasfile('gambar_barang')) {
                 $image = $request->file('gambar_barang');
                 $image_name = bin2hex(time() . '-barang') . '.' . $image->getClientOriginalExtension();
@@ -80,9 +78,8 @@ class BarangController extends Controller
     public function show(string $id)
     {
         //
-        $active = 'barang';
         $data = Barang::findOrFail($id);
-        return view('pages.admin.barang.barang-detail', compact('active', 'data'));
+        return view('pages.admin.barang.barang-detail', compact('data'));
     }
 
     /**
@@ -91,10 +88,9 @@ class BarangController extends Controller
     public function edit(string $id)
     {
         //
-        $active = 'barang';
         $data = Barang::findOrFail($id);
         $datajenis = Kategoribarang::all();
-        return view('pages.admin.barang.barang-edit', compact('active', 'data', 'datajenis'));
+        return view('pages.admin.barang.barang-edit', compact('data', 'datajenis'));
     }
 
     /**

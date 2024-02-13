@@ -6,14 +6,14 @@
     <section class="section">
         <div class="row-12">
             <div class="card">
-                <div class="card-header">
+                {{-- <div class="card-header">
                     <h4>Toko Mainan</h4>
-                </div>
+                </div> --}}
                 <div class="card-body">
                     <nav class="navbar bg-primary">
-                        <a class="navbar-brand" href="#">My App</a>
-                        <form class="form-inline">
-                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        <h5 class="navbar-brand">Toko Mainan</h5>
+                        <form class="form-inline" action="" method="GET">
+                            <input class="form-control" value="{{ request('search')}}" name="search" type="text" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-dark" type="submit">Search</button>
                         </form>
                     </nav>

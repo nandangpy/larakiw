@@ -17,11 +17,15 @@ class SaldoSeeder extends Seeder
     {
         //
         DB::table('saldo')->insert([
-
             [
                 'uid_s' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
                 'id' => User::where('name', 'Nandang')->first()['id'],
                 'total_saldo' => 500000,
+            ],
+            [
+                'uid_s' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
+                'id' => User::where('name', 'Prayogi')->first()['id'],
+                'total_saldo' => 300000,
             ],
         ]);
     }

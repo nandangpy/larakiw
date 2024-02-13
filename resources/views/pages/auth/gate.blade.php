@@ -25,9 +25,8 @@
     <div class="form-container sign-up">
         <form action="/auth/register" method="POST">
             @csrf
-            <h1>Buat Akun</h1>
             <div class="social-icons">
-                <img src="{{ asset('assets/images/logo/logo1.png') }}" alt="Logo" style="width: 30%;" class="center">
+                <img src="{{asset('assets/img/logo-kiwkiw@.png')}}" alt="Logo" style="width: 50%;" class="center">
             </div>
             <span>or use your email for registeration</span>
             <input type="text" placeholder="Name" name="nama_lengkap">
@@ -47,7 +46,10 @@
     <div class="form-container sign-in">
         <form method="POST" action="/auth/login">
             @csrf
-            <h1 class="text-center">TOKO PAK DIO</h1>
+            {{-- <h1 class="text-center">TOKO PAK DIO</h1> --}}
+            <div class="social-icons">
+                <img src="{{asset('assets/img/logo-kiwkiw@.png')}}" alt="Logo" style="width: 50%;" class="center">
+            </div>
             <span>Gunakan Email Password</span>
             <input id="email" type="email" class="form-control @error('email')is-invalid @enderror"
                 placeholder="Masukan Email" name="email" value="{{ old('email') }}">
@@ -68,8 +70,8 @@
     <div class="toggle-container">
         <div class="toggle">
             <div class="toggle-panel toggle-left">
-                <h1>Welcome Back!</h1>
-                <p>Masukkan detail bisnis Anda untuk menggunakan semua fitur situs</p>
+                <h1>TOKO MAINAN</h1>
+                <p>Selamat berbelanja di TOKO PAKDIO</p>
                 <button class="hidden" id="login">Masuk</button>
             </div>
             <div class="toggle-panel toggle-right">

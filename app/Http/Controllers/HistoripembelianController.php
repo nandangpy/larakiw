@@ -13,10 +13,7 @@ class HistoripembelianController extends Controller
     public function historypembelian()
     {
         //
-        $active = 'transaksi';
         $data = Transaksi::with('barang')->where('id', Auth::user()->id)->whereIn('status', ['DITERIMA'])->get();
-        // dd($data);
-        return view('pages.public.historypembelian', compact('active', 'data'));
-        // return view('pages.public.transaksi');
+        return view('pages.public.historypembelian', compact('data'));
     }
 }

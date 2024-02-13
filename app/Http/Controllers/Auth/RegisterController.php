@@ -22,9 +22,9 @@ class RegisterController extends Controller
     {
         $validator = Validator::make(request()->all(), [
             'nama_lengkap' => 'required|max:255',
-            // 'nohp' => 'required|digits_between:10,13|numeric',
             'email_anda' => 'required|email:rfc,dns|unique:App\Models\User,email',
             'password_anda' => 'required|max:255|min:5',
+            // 'nohp' => 'required|digits_between:10,13|numeric',
         ]);
 
 
