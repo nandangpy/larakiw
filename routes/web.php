@@ -40,15 +40,11 @@ Route::group([
     'prefix' => 'auth',
     'namespace' => 'Auth',
 ], function () {
-    // Route::resource('login', LoginController::class)->only(['authenticate', 'index'])->middleware('guest');
     Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
     Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/register', [RegisterController::class, 'index'])->name('register')->middleware('guest');
     Route::post('/register',  [RegisterController::class, 'store'])->name('register');
-    // Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-    // Route::get('/profile/{id}/ubah', [ProfileController::class, 'ubah'])->name('profile.ubah');
-    // Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
 });
 
 
@@ -69,6 +65,8 @@ Route::group([
     Route::get('/penjualan', [PenjualanController::class, 'index'])->name('penjualan');
     Route::post('/penjualan', [PenjualanController::class, 'filterperiode'])->name('penjualan-filter');
     Route::post('/penjualan/print', [PenjualanController::class, 'cetaklaporanperiode'])->name('print-laporan');
+    Route::get('/penjualan/print-harian', [PenjualanController::class, 'cetaklaporanharian'])->name('print-laporan-harian');
+    Route::get('/penjualan/print-bulanan', [PenjualanController::class, 'cetaklaporanbulanan'])->name('print-laporan-bulanan');
 });
 
 /*------------------------------------------

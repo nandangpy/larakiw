@@ -29,7 +29,6 @@ class TransaksisayaController extends Controller
     {
         //
         $invoicePesanan = Transaksi::with('barang')->where('uid_tr', $id)->whereIn('status', ['DIBAYAR'])->first();
-
         $pdf = Pdf::loadView('pages.print.print-invoice', ['invoicePesanan' => $invoicePesanan]);
         $docName = $invoicePesanan->uid_tr . '-' . 'Invoice';
         return $pdf->stream($docName);

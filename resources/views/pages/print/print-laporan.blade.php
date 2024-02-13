@@ -70,7 +70,20 @@
             Email: nandang@tokopakdio.com</p>
         <div class="bb-1" style="margin-top: 0px"></div>
         <div class="bb-2" style="margin-top: 1px"></div>
-        <h5 class="mt-5"><strong><u>LAPORAN PENJUALAN PERIODE {{date('d-F-Y', strtotime($fromDate)) }} - {{date('d-F-Y', strtotime($toDate)) }} </u></strong>
+        <h5 class="mt-5">
+            <strong>
+                <u>LAPORAN PENJUALAN PERIODE
+                    @if (!empty($fromDate))
+                    {{ \Carbon\Carbon::parse($fromDate)->format('d F Y') }}
+                    @endif
+                    @if (!empty($toDate))
+                    - {{ \Carbon\Carbon::parse($toDate)->format('d F Y') }}
+                    @endif
+                    @if (!empty($toMonth))
+                    - {{ $toMonth }}
+                    @endif
+                </u>
+            </strong>
         </h5>
     </div>
     <div class="wrapper bb-1">
