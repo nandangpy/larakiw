@@ -150,9 +150,7 @@
             <tr class="title">
                 <td class="normal no-bottom no-left">No. {{ $invoicePesanan->uid_tr }}</td>
                 <td class="small no-bottom"><strong>Tgl Order:</strong> {{ \Carbon\Carbon::parse($invoicePesanan->created_at)->format('d/m/Y')}}</td>
-                {{-- <td class="small no-bottom">Tanggal Order</td> --}}
             </tr>
-            
         </table>
     </div>
 
@@ -175,10 +173,7 @@
             </tbody>
         </table>
 
-        <div class="mt-1" style="float: right;">
-            {{-- <p class="center"><u>{{ $invoicePesanan->nama_staff }}</u><br><i>SUMBER REJEKI MOBIL</i></p> --}}
-        </div>
     </div>
 </body>
-
+ 
 </html>
